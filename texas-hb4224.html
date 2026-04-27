@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Texas HB 4224 Compliance — Four Pillars Counseling</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    :root {
+      --cream:      #F8F6F2;
+      --parchment:  #F0EDE6;
+      --sand:       #DDD7CC;
+      --navy:       #4A60A0;
+      --navy-dark:  #2E3F72;
+      --navy-mid:   #3A508C;
+      --blue-light: #AABFE0;
+      --blue-mid:   #7D97CC;
+      --text:       #252D48;
+      --text-mid:   #4A5578;
+      --text-light: #7D8DB8;
+    }
+
+    body {
+      font-family: 'Jost', sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0.9rem 5vw;
+      background: rgba(246,244,239,0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--sand);
+    }
+    .nav-logo {
+      display: flex; align-items: center; gap: 0.75rem;
+      text-decoration: none;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem; font-weight: 500;
+      color: var(--navy-dark); letter-spacing: 0.03em;
+    }
+    .nav-logo span { color: var(--navy); }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.82rem; font-weight: 400;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--text-mid); text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--navy); }
+    .nav-cta {
+      background: var(--navy); color: #fff !important;
+      padding: 0.55rem 1.4rem; border-radius: 2px;
+      letter-spacing: 0.1em !important; transition: background 0.2s !important;
+    }
+    .nav-cta:hover { background: var(--navy-mid) !important; color: #fff !important; }
+
+    /* HERO */
+    .hero {
+      min-height: 52vh;
+      background: var(--navy-dark);
+      display: flex; flex-direction: column; justify-content: flex-end;
+      padding: 9rem 8vw 5rem;
+      position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse at 85% 30%, rgba(107,132,196,0.15) 0%, transparent 55%),
+        radial-gradient(ellipse at 15% 70%, rgba(45,62,122,0.25)   0%, transparent 50%);
+    }
+    .hero-pattern {
+      position: absolute; inset: 0; opacity: 0.04;
+      background-image: repeating-linear-gradient(45deg,#fff 0,#fff 1px,transparent 0,transparent 50%);
+      background-size: 24px 24px;
+    }
+    .hero-content { position: relative; z-index: 2; max-width: 720px; }
+    .hero-breadcrumb {
+      font-size: 0.7rem; font-weight: 300; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--blue-light);
+      margin-bottom: 1.5rem; opacity: 0.8;
+    }
+    .hero-breadcrumb a { color: var(--blue-light); text-decoration: none; }
+    .hero-breadcrumb a:hover { color: #fff; }
+    .hero-breadcrumb span { opacity: 0.5; margin: 0 0.5rem; }
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.8rem, 5vw, 4.5rem);
+      font-weight: 300; line-height: 1.1; color: #fff;
+      margin-bottom: 1.2rem;
+    }
+    .hero-title em { font-style: italic; color: var(--blue-light); }
+    .hero-sub {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.1rem, 1.8vw, 1.35rem);
+      font-weight: 300; font-style: italic; line-height: 1.65;
+      color: rgba(255,255,255,0.65); max-width: 580px;
+      border-left: 2px solid var(--blue-mid); padding-left: 1.4rem;
+    }
+
+    /* SECTIONS */
+    .section     { padding: 6rem 8vw; }
+    .section-alt { background: var(--parchment); }
+    .section-dark { background: var(--navy-dark); }
+
+    .section-label {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.7rem; font-weight: 300;
+      letter-spacing: 0.24em; text-transform: uppercase;
+      color: var(--navy); margin-bottom: 1rem;
+    }
+    .section-dark .section-label { color: var(--blue-light); }
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.9rem, 3.2vw, 2.8rem);
+      font-weight: 300; color: var(--navy-dark);
+      line-height: 1.18; margin-bottom: 2.5rem;
+    }
+    .section-dark .section-title { color: #fff; }
+
+    /* SIDEBAR PROSE */
+    .sidebar-prose-layout {
+      display: grid;
+      grid-template-columns: 1fr 1.8fr;
+      gap: 6rem; align-items: start;
+    }
+    .sidebar-prose-sidebar { position: sticky; top: 6rem; }
+    .sidebar-prose-sidebar .section-title { font-size: clamp(1.7rem, 2.5vw, 2.2rem); }
+    .sidebar-prose-body p {
+      font-size: 1rem; font-weight: 300; line-height: 1.85;
+      color: var(--text-mid); margin-bottom: 1.5rem;
+    }
+    .sidebar-prose-body p:last-child { margin-bottom: 0; }
+
+    /* CONTENT ASIDE */
+    .content-aside-layout {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 6rem; align-items: center;
+    }
+    .content-aside-box {
+      background: var(--navy-dark);
+      padding: 3rem 2.5rem; border-radius: 2px;
+    }
+    .content-aside-box-label {
+      font-size: 0.68rem; font-weight: 300;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--blue-light); margin-bottom: 1.2rem;
+    }
+    .content-aside-box-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.35rem; font-weight: 300; font-style: italic;
+      line-height: 1.6; color: rgba(255,255,255,0.85);
+    }
+    .content-aside-box-emphasis {
+      display: block; margin-top: 1.2rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.8rem; font-weight: 500; font-style: normal;
+      color: #fff; letter-spacing: 0.04em;
+    }
+
+    /* CARD GRID */
+    .card-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 1.5px; background: var(--sand);
+      border: 1.5px solid var(--sand); margin-top: 3rem;
+    }
+    .card {
+      background: var(--cream); padding: 2.8rem 2.5rem;
+      position: relative; overflow: hidden; transition: background 0.3s;
+    }
+    .card:hover { background: var(--parchment); }
+    .card::before {
+      content: ''; position: absolute; top: 0; left: 0;
+      width: 3px; height: 0; background: var(--navy);
+      transition: height 0.4s ease;
+    }
+    .card:hover::before { height: 100%; }
+    .card-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.5rem; font-weight: 300;
+      color: var(--blue-mid); opacity: 0.4;
+      line-height: 1; margin-bottom: 1rem;
+    }
+    .card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem; font-weight: 500;
+      color: var(--navy-dark); margin-bottom: 0.8rem;
+    }
+    .card p {
+      font-size: 0.92rem; font-weight: 300;
+      line-height: 1.8; color: var(--text-mid);
+    }
+    .card-grid-footer {
+      background: var(--navy-dark); padding: 2.8rem 2.5rem; margin-top: 1.5px;
+      grid-column: 1 / -1;
+    }
+    .card-grid-footer p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem; font-weight: 300; font-style: italic;
+      line-height: 1.7; color: rgba(255,255,255,0.8); max-width: 680px;
+    }
+
+    /* ICON LIST */
+    .icon-list { display: flex; flex-direction: column; gap: 0; margin-top: 3rem; max-width: 720px; }
+    .icon-list-item {
+      padding: 2rem 0; border-bottom: 1px solid var(--sand);
+      display: grid; grid-template-columns: 2rem 1fr;
+      gap: 1.5rem; align-items: start; transition: padding-left 0.3s;
+    }
+    .icon-list-item:first-child { padding-top: 0; }
+    .icon-list-item:hover { padding-left: 0.5rem; }
+    .icon-list-icon { color: var(--navy); margin-top: 0.2rem; }
+    .icon-list-item strong {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem; font-weight: 500;
+      color: var(--navy-dark); display: block; margin-bottom: 0.4rem;
+    }
+    .icon-list-item p {
+      font-size: 0.95rem; font-weight: 300;
+      line-height: 1.8; color: var(--text-mid);
+    }
+
+    /* CALLOUT BAND */
+    .callout-band {
+      background: var(--parchment);
+      border-top: 3px solid var(--navy);
+      padding: 4rem 8vw;
+    }
+    .callout-band-inner { max-width: 720px; }
+    .callout-band-heading {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.4rem, 2.5vw, 2rem); font-weight: 400;
+      color: var(--navy-dark); margin-bottom: 1.2rem; line-height: 1.3;
+    }
+    .callout-band-body {
+      font-size: 0.95rem; font-weight: 300;
+      line-height: 1.8; color: var(--text-mid);
+    }
+    .inline-link {
+      color: var(--navy); font-weight: 400;
+      text-decoration: underline; text-underline-offset: 3px;
+      transition: color 0.2s;
+    }
+    .inline-link:hover { color: var(--navy-mid); }
+    .arrow-link {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-size: 0.82rem; font-weight: 400;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--navy); text-decoration: none;
+      border-bottom: 1px solid var(--navy); padding-bottom: 0.2rem;
+      transition: gap 0.2s, color 0.2s;
+    }
+    .arrow-link:hover { gap: 0.8rem; color: var(--navy-mid); }
+    .arrow-link::after { content: '→'; }
+
+    /* CTA */
+    .cta-section {
+      background: var(--navy-dark);
+      padding: 7rem 8vw;
+      position: relative; overflow: hidden; text-align: center;
+    }
+    .cta-section::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 50% 0%, rgba(107,132,196,0.15) 0%, transparent 60%);
+    }
+    .cta-content { position: relative; z-index: 2; max-width: 680px; margin: 0 auto; }
+    .cta-headline {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.8rem, 3vw, 2.8rem); font-weight: 300;
+      color: #fff; line-height: 1.25; margin-bottom: 1.2rem;
+    }
+    .cta-body {
+      font-size: 0.95rem; font-weight: 300; line-height: 1.8;
+      color: rgba(255,255,255,0.6); margin-bottom: 3rem;
+    }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      background: #fff; color: var(--navy-dark);
+      font-family: 'Jost', sans-serif;
+      font-size: 0.82rem; font-weight: 400;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      text-decoration: none;
+      padding: 1rem 2.5rem; border-radius: 2px;
+      transition: background 0.2s, color 0.2s;
+    }
+    .btn-primary:hover { background: var(--blue-light); }
+    .btn-outline {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      border: 1px solid rgba(255,255,255,0.3); color: rgba(255,255,255,0.7);
+      font-family: 'Jost', sans-serif;
+      font-size: 0.82rem; font-weight: 400;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      text-decoration: none;
+      padding: 1rem 2.5rem; border-radius: 2px; margin-left: 1.2rem;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .btn-outline:hover { border-color: var(--blue-light); color: var(--blue-light); }
+
+    /* ADDRESS BLOCK */
+    .address-block {
+      background: var(--navy-dark); border-left: 3px solid var(--blue-mid);
+      padding: 1.8rem 2rem; margin: 1.5rem 0;
+      font-family: 'Jost', sans-serif;
+      font-size: 0.9rem; font-weight: 300;
+      line-height: 1.9; color: rgba(255,255,255,0.75);
+    }
+    .address-block strong {
+      display: block; color: #fff; font-weight: 400;
+      font-size: 0.78rem; letter-spacing: 0.14em; text-transform: uppercase;
+      margin-bottom: 0.6rem; color: var(--blue-light);
+    }
+
+    /* NOTE BOX */
+    .note-box {
+      border: 1px solid var(--sand); border-left: 3px solid var(--navy);
+      background: var(--parchment);
+      padding: 1.8rem 2rem; margin: 2rem 0;
+    }
+    .note-box p {
+      font-size: 0.88rem; font-weight: 300;
+      line-height: 1.8; color: var(--text-mid); margin-bottom: 0.8rem;
+    }
+    .note-box p:last-child { margin-bottom: 0; }
+    .note-box p strong {
+      font-weight: 500; color: var(--text);
+    }
+
+    /* FOOTER */
+    footer {
+      background: #0D1020; padding: 2rem 8vw;
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 1rem;
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+    footer p { font-size: 0.75rem; font-weight: 300; color: rgba(255,255,255,0.25); }
+    .footer-links { display: flex; gap: 2rem; }
+    footer a { font-size: 0.75rem; color: rgba(255,255,255,0.3); text-decoration: none; transition: color 0.2s; }
+    footer a:hover { color: var(--blue-light); }
+
+    /* LEAD */
+    p.lead {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.15rem, 1.8vw, 1.4rem);
+      font-weight: 300; font-style: italic;
+      line-height: 1.7; color: var(--text); margin-bottom: 2rem;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 860px) {
+      .sidebar-prose-layout,
+      .content-aside-layout { grid-template-columns: 1fr; gap: 3rem; }
+      .sidebar-prose-sidebar { position: static; }
+      .card-grid { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="index.html" class="nav-logo">
+      Four Pillars <span>Counseling</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="couples.html">Couples Counseling</a></li>
+      <li><a href="individual-counseling.html">Individual Counseling</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="#">FAQ</a></li>
+      <li><a href="index.html#contact" class="nav-cta">Free Consultation</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-pattern"></div>
+    <div class="hero-content">
+      <p class="hero-breadcrumb">
+        <a href="index.html">Home</a>
+        <span>/</span>
+        Texas HB 4224
+      </p>
+      <h1 class="hero-title">Compliance With<br><em>Texas House Bill 4224</em></h1>
+      <p class="hero-sub">Your rights, our obligations, and how to reach people who can help.</p>
+    </div>
+  </section>
+
+  <!-- SECTION 1: BHEC Contact — sidebar prose -->
+  <section class="section">
+    <div class="sidebar-prose-layout">
+      <div class="sidebar-prose-sidebar">
+        <p class="section-label">Regulatory Body</p>
+        <h2 class="section-title">Contacting BHEC</h2>
+        <a href="https://bhec.texas.gov/" class="arrow-link" target="_blank" rel="noopener">Visit BHEC Website</a>
+      </div>
+      <div class="sidebar-prose-body">
+        <p class="lead">BHEC — the Texas Behavioral Health Executive Council — regulates licensed mental health professionals across the state of Texas.</p>
+        <p>If you have questions about licensure or professional standards, you may contact the Texas State Board of Examiners of Professional Counselors, a division of BHEC, directly.</p>
+
+        <div class="address-block">
+          <strong>Texas State Board of Examiners of Professional Counselors</strong>
+          1801 Congress Ave., Ste. 7300<br>
+          Austin, TX 78701<br>
+          Phone: <a href="tel:+15128346658" style="color:var(--blue-light);text-decoration:none;">512-834-6658</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 2: Consumer Complaint — callout band -->
+  <div class="callout-band">
+    <div class="callout-band-inner">
+      <h2 class="callout-band-heading">Business Violations: Consumer Complaint</h2>
+      <p class="callout-band-body">
+        If you would like to file a consumer complaint against a business in the state of Texas, please contact the Texas Attorney General's Office.
+        You can <a href="https://consumerprotection.texasattorneygeneral.gov/consumercomplaintportal/s/" class="inline-link" target="_blank" rel="noopener">file a complaint online</a> or
+        <a href="https://www.texasattorneygeneral.gov/consumer-protection/file-consumer-complaint/consumer-rights" class="inline-link" target="_blank" rel="noopener">learn more about your consumer rights</a>.
+      </p>
+    </div>
+  </div>
+
+  <!-- SECTION 3: Records — content aside layout -->
+  <section class="section section-alt">
+    <div class="content-aside-layout">
+      <div>
+        <p class="section-label">Your Rights</p>
+        <h2 class="section-title">Requesting Mental Health Records</h2>
+        <p style="font-size:1rem;font-weight:300;line-height:1.85;color:var(--text-mid);margin-bottom:1.5rem;">
+          You have the right to request a copy of your mental health records. Records will be provided in accordance with Texas law and applicable privacy regulations.
+        </p>
+        <p style="font-size:1rem;font-weight:300;line-height:1.85;color:var(--text-mid);margin-bottom:1.5rem;">
+          Requests may be submitted via mail, in writing, or through the messaging feature of your secure client portal.
+        </p>
+        <div class="address-block">
+          <strong>Mail Records Requests To</strong>
+          Four Pillars Counseling, PLLC<br>
+          PO Box 5145<br>
+          Bella Vista, AR 72714
+        </div>
+      </div>
+      <div class="content-aside-box">
+        <p class="content-aside-box-label">Important Notice</p>
+        <p class="content-aside-box-text">
+          All requests must unambiguously state that the purpose is to request delivery of your mental health records.
+          <span class="content-aside-box-emphasis">Sign your ROI first.</span>
+        </p>
+        <p style="font-size:0.85rem;font-weight:300;line-height:1.7;color:rgba(255,255,255,0.5);margin-top:1.5rem;">
+          A signed Release of Information (ROI) is required before records are provided.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 4: Records policies — card grid -->
+  <section class="section">
+    <p class="section-label">Records Policy Details</p>
+    <h2 class="section-title">What to Know Before You Request</h2>
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-num">01</div>
+        <h3>Copy Fees</h3>
+        <p>A fee of <strong>$2.00 per page</strong> of client records will be assessed to cover copy and printing charges.</p>
+      </div>
+      <div class="card">
+        <div class="card-num">02</div>
+        <h3>Delivery Time</h3>
+        <p>Please submit your records request with plenty of advance notice. Allow <strong>2 weeks for delivery</strong> after your request has been processed.</p>
+      </div>
+      <div class="card">
+        <div class="card-num">03</div>
+        <h3>Request Format</h3>
+        <p>Requests must clearly state their purpose and must not mix other questions or unrelated matters. One purpose per request, please.</p>
+      </div>
+      <div class="card">
+        <div class="card-num">04</div>
+        <h3>Possible Denial</h3>
+        <p>Under certain limited circumstances listed in <strong>45 CFR 164.524(a)(2)–(a)(3)</strong>, access to all or a portion of the requested PHI may be denied.</p>
+      </div>
+      <div class="card-grid-footer">
+        <p>A Release of Information (ROI) must be signed prior to receiving any requested records. The ROI must be on file before records are released under any circumstances.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 5: How to submit — icon list -->
+  <section class="section section-alt">
+    <div class="sidebar-prose-layout">
+      <div class="sidebar-prose-sidebar">
+        <p class="section-label">Submission Methods</p>
+        <h2 class="section-title">How to Submit a Request</h2>
+      </div>
+      <div>
+        <div class="icon-list">
+          <div class="icon-list-item">
+            <div class="icon-list-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+            </div>
+            <div>
+              <strong>Via Secure Client Portal</strong>
+              <p>Use the messaging feature within your secure client portal to submit a records request. This is the fastest and most secure method.</p>
+            </div>
+          </div>
+          <div class="icon-list-item">
+            <div class="icon-list-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13"/></svg>
+            </div>
+            <div>
+              <strong>In Writing</strong>
+              <p>Submit a written request directly to our office. Clearly state that the purpose of your communication is to request a delivery of mental health records.</p>
+            </div>
+          </div>
+          <div class="icon-list-item">
+            <div class="icon-list-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+            </div>
+            <div>
+              <strong>Via Mail</strong>
+              <p>Send your written request to: Four Pillars Counseling, PLLC — PO Box 5145, Bella Vista, AR 72714. Allow 2 weeks for processing and delivery.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="cta-content">
+      <h2 class="cta-headline">Questions About Your Rights or Records?</h2>
+      <p class="cta-body">We're here to help. Reach out by phone or email and we'll guide you through the process.</p>
+      <div>
+        <a href="tel:+14696530014" class="btn-primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81 19.79 19.79 0 012 2.19 2 2 0 013.97 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+          (469) 653-0014
+        </a>
+        <a href="mailto:info@fourpillarscounselingpllc.com" class="btn-outline">
+          info@fourpillarscounselingpllc.com
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2025 Four Pillars Counseling, PLLC. All rights reserved.</p>
+    <div class="footer-links">
+      <a href="index.html">Home</a>
+      <a href="about.html">About Me</a>
+      <a href="https://fourpillarscounselingpllc.com/texas-hb4224/">TX HB 4224</a>
+      <a href="https://bhec.texas.gov/" target="_blank" rel="noopener">BHEC</a>
+    </div>
+  </footer>
+
+</body>
+</html>

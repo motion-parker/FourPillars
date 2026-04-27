@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Counseling for Attorneys | Four Pillars Counseling, PLLC</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream:      #F8F6F2;
+      --parchment:  #F0EDE6;
+      --sand:       #DDD7CC;
+      --navy:       #4A60A0;
+      --navy-dark:  #2E3F72;
+      --navy-mid:   #3A508C;
+      --blue-light: #AABFE0;
+      --blue-mid:   #7D97CC;
+      --text:       #252D48;
+      --text-mid:   #4A5578;
+      --text-light: #7D8DB8;
+      --crisis-red: #8B1A1A;
+      --crisis-red-light: #F9EDED;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Jost', sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* ── CRISIS BAND ── */
+    .crisis-band {
+      background: var(--crisis-red);
+      padding: 1.2rem 8vw;
+    }
+    .crisis-band-inner {
+      display: flex;
+      align-items: flex-start;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+    .crisis-band-label {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #fff;
+      white-space: nowrap;
+      padding-top: 0.15rem;
+    }
+    .crisis-band-resources {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem 2rem;
+    }
+    .crisis-resource {
+      font-size: 0.82rem;
+      font-weight: 300;
+      color: rgba(255,255,255,0.9);
+    }
+    .crisis-resource strong { font-weight: 500; color: #fff; }
+    .crisis-resource a { color: rgba(255,255,255,0.75); text-decoration: underline; }
+    .crisis-resource a:hover { color: #fff; }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 56vh;
+      background: var(--navy-dark);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 6rem 8vw 5rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse at 85% 25%, rgba(107,132,196,0.18) 0%, transparent 55%),
+        radial-gradient(ellipse at 10% 75%, rgba(45,62,122,0.25) 0%, transparent 50%);
+    }
+    .hero-pattern {
+      position: absolute; inset: 0;
+      opacity: 0.04;
+      background-image: repeating-linear-gradient(
+        45deg, #fff 0, #fff 1px, transparent 0, transparent 50%
+      );
+      background-size: 24px 24px;
+    }
+    .hero-content { position: relative; z-index: 2; max-width: 780px; }
+    .hero-eyebrow {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 300;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--blue-light);
+      margin-bottom: 1.5rem;
+      opacity: 0.8;
+    }
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.4rem, 4.5vw, 4rem);
+      font-weight: 300;
+      line-height: 1.12;
+      color: #fff;
+      margin-bottom: 1.4rem;
+    }
+    .hero-title em { font-style: italic; color: var(--blue-light); }
+    .hero-sub {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.1rem, 1.8vw, 1.35rem);
+      font-weight: 300;
+      font-style: italic;
+      line-height: 1.65;
+      color: rgba(255,255,255,0.65);
+      max-width: 600px;
+      border-left: 2px solid var(--blue-mid);
+      padding-left: 1.4rem;
+    }
+
+    /* ── SHARED ── */
+    .section { padding: 6rem 8vw; }
+    .section-alt { background: var(--parchment); }
+    .section-dark { background: var(--navy-dark); }
+    .section-label {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 300;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--navy);
+      margin-bottom: 1rem;
+    }
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.9rem, 3.2vw, 2.8rem);
+      font-weight: 300;
+      color: var(--navy-dark);
+      line-height: 1.18;
+      margin-bottom: 2.5rem;
+    }
+
+    /* ── PROSE LAYOUT ── */
+    .prose-layout {
+      display: grid;
+      grid-template-columns: 1fr 1.8fr;
+      gap: 6rem;
+      align-items: start;
+    }
+    .prose-sidebar { position: sticky; top: 6rem; }
+    .prose-sidebar .section-title { font-size: clamp(1.7rem, 2.5vw, 2.2rem); }
+    .prose-body p {
+      font-size: 1rem;
+      font-weight: 300;
+      line-height: 1.85;
+      color: var(--text-mid);
+      margin-bottom: 1.5rem;
+    }
+    .prose-body p:last-child { margin-bottom: 0; }
+    .prose-body .source-note {
+      font-size: 0.78rem;
+      font-weight: 300;
+      color: var(--text-light);
+      font-style: italic;
+      margin-top: -0.8rem;
+      margin-bottom: 1.5rem;
+    }
+    .prose-body .source-note a {
+      color: var(--navy);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    /* ── STAT CALLOUTS ── */
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5px;
+      background: var(--sand);
+      border: 1.5px solid var(--sand);
+      margin-bottom: 3rem;
+    }
+    .stat-card {
+      background: var(--navy-dark);
+      padding: 2.2rem 1.8rem;
+      text-align: center;
+    }
+    .stat-number {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      font-weight: 300;
+      color: var(--blue-light);
+      line-height: 1;
+      margin-bottom: 0.6rem;
+    }
+    .stat-label {
+      font-size: 0.78rem;
+      font-weight: 300;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.5;
+    }
+
+    /* ── SUICIDE CALLOUT ── */
+    .suicide-callout {
+      background: var(--navy-dark);
+      border-left: 4px solid var(--blue-mid);
+      padding: 2rem 2.5rem;
+      margin: 2rem 0;
+    }
+    .suicide-callout p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      font-weight: 400;
+      font-style: italic;
+      color: rgba(255,255,255,0.85);
+      line-height: 1.6;
+      margin: 0 !important;
+    }
+
+    /* ── BRINGS ATTORNEYS LIST ── */
+    .brings-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      margin-bottom: 2rem;
+    }
+    .brings-item {
+      padding: 1.2rem 0;
+      border-bottom: 1px solid var(--sand);
+      font-size: 0.95rem;
+      font-weight: 300;
+      color: var(--text-mid);
+      line-height: 1.7;
+      display: grid;
+      grid-template-columns: 1.2rem 1fr;
+      gap: 1rem;
+      align-items: start;
+    }
+    .brings-item:first-child { padding-top: 0; }
+    .brings-item-dot {
+      width: 6px;
+      height: 6px;
+      background: var(--navy);
+      border-radius: 50%;
+      margin-top: 0.55rem;
+    }
+    .brings-suicide {
+      padding: 1.8rem 0 0;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      font-weight: 400;
+      color: var(--navy-dark);
+      line-height: 1.5;
+      border-bottom: none;
+      display: block;
+    }
+
+    /* ── PEER ASIDE ── */
+    .peer-layout {
+      display: grid;
+      grid-template-columns: 1.6fr 1fr;
+      gap: 6rem;
+      align-items: start;
+    }
+    .peer-content p {
+      font-size: 1rem;
+      font-weight: 300;
+      line-height: 1.85;
+      color: var(--text-mid);
+      margin-bottom: 1.5rem;
+    }
+    .peer-content p:last-child { margin-bottom: 0; }
+    .peer-aside {
+      background: var(--navy-dark);
+      padding: 3rem 2.5rem;
+      border-radius: 2px;
+      position: sticky;
+      top: 6rem;
+    }
+    .peer-aside-label {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.68rem;
+      font-weight: 300;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--blue-light);
+      margin-bottom: 1.2rem;
+    }
+    .peer-aside-quote {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      font-weight: 300;
+      font-style: italic;
+      line-height: 1.5;
+      color: #fff;
+    }
+
+    /* ── CONFIDENTIALITY ── */
+    .confidentiality-band {
+      background: var(--parchment);
+      border-top: 3px solid var(--navy);
+      border-bottom: 3px solid var(--navy);
+      padding: 4rem 8vw;
+    }
+    .confidentiality-inner {
+      max-width: 780px;
+    }
+    .confidentiality-inner p {
+      font-size: 1rem;
+      font-weight: 300;
+      line-height: 1.85;
+      color: var(--text-mid);
+      margin-bottom: 1.2rem;
+    }
+    .confidentiality-inner p:last-child { margin-bottom: 0; }
+
+    /* ── LOGISTICS ── */
+    .logistics-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      margin-top: 3rem;
+      max-width: 720px;
+    }
+    .logistics-item {
+      padding: 2rem 0;
+      border-bottom: 1px solid var(--sand);
+      display: grid;
+      grid-template-columns: 2rem 1fr;
+      gap: 1.5rem;
+      align-items: start;
+      transition: padding-left 0.3s;
+    }
+    .logistics-item:first-child { padding-top: 0; }
+    .logistics-item:hover { padding-left: 0.5rem; }
+    .logistics-icon { color: var(--navy); margin-top: 0.2rem; }
+    .logistics-item strong {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      font-weight: 500;
+      color: var(--navy-dark);
+      display: block;
+      margin-bottom: 0.4rem;
+    }
+    .logistics-item p {
+      font-size: 0.95rem;
+      font-weight: 300;
+      line-height: 1.8;
+      color: var(--text-mid);
+    }
+
+    /* ── CRISIS RESOURCES SECTION ── */
+    .crisis-section {
+      background: #0D1020;
+      padding: 5rem 8vw;
+    }
+    .crisis-section-label {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 300;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--blue-light);
+      margin-bottom: 1rem;
+    }
+    .crisis-section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+      font-weight: 300;
+      color: #fff;
+      margin-bottom: 3rem;
+    }
+    .crisis-resources-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5px;
+      background: rgba(255,255,255,0.06);
+      border: 1.5px solid rgba(255,255,255,0.06);
+    }
+    .crisis-resource-card {
+      background: #0D1020;
+      padding: 2rem 2rem;
+      transition: background 0.2s;
+    }
+    .crisis-resource-card:hover { background: rgba(255,255,255,0.03); }
+    .crisis-resource-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem;
+      font-weight: 500;
+      color: #fff;
+      margin-bottom: 0.8rem;
+    }
+    .crisis-resource-detail {
+      font-size: 0.82rem;
+      font-weight: 300;
+      color: rgba(255,255,255,0.55);
+      line-height: 1.7;
+    }
+    .crisis-resource-detail a {
+      color: var(--blue-light);
+      text-decoration: none;
+    }
+    .crisis-resource-detail a:hover { color: #fff; }
+    .crisis-resource-detail strong {
+      color: rgba(255,255,255,0.85);
+      font-weight: 400;
+    }
+    .crisis-resource-badge {
+      display: inline-block;
+      font-family: 'Jost', sans-serif;
+      font-size: 0.62rem;
+      font-weight: 400;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--blue-light);
+      border: 1px solid rgba(151,174,217,0.25);
+      padding: 0.25rem 0.7rem;
+      border-radius: 2px;
+      margin-top: 0.8rem;
+    }
+
+    /* ── CTA ── */
+    .cta-section {
+      background: var(--navy-dark);
+      padding: 7rem 8vw;
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+    }
+    .cta-section::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 50% 0%, rgba(107,132,196,0.15) 0%, transparent 60%);
+    }
+    .cta-content { position: relative; z-index: 2; max-width: 620px; margin: 0 auto; }
+    .cta-headline {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.6rem, 2.8vw, 2.4rem);
+      font-weight: 300;
+      color: #fff;
+      line-height: 1.3;
+      margin-bottom: 1.5rem;
+    }
+    .cta-confidential {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.35rem;
+      font-weight: 400;
+      font-style: italic;
+      color: var(--blue-light);
+      margin-bottom: 1rem;
+    }
+    .cta-directive {
+      font-size: 0.88rem;
+      font-weight: 300;
+      color: rgba(255,255,255,0.55);
+      margin-bottom: 3rem;
+      letter-spacing: 0.04em;
+    }
+    .acuity-placeholder {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 4px;
+      padding: 4rem 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+    }
+    .acuity-label {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      font-weight: 400;
+      color: #fff;
+    }
+    .acuity-note {
+      font-size: 0.85rem;
+      font-weight: 300;
+      color: rgba(255,255,255,0.45);
+      max-width: 420px;
+      line-height: 1.7;
+      text-align: center;
+    }
+    .acuity-badge {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.68rem;
+      font-weight: 400;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--blue-light);
+      border: 1px solid rgba(151,174,217,0.3);
+      padding: 0.4rem 1rem;
+      border-radius: 2px;
+      margin-top: 0.5rem;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #0D1020;
+      padding: 2rem 8vw;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+    footer p { font-size: 0.75rem; font-weight: 300; color: rgba(255,255,255,0.25); }
+    .footer-links { display: flex; gap: 2rem; }
+    footer a { font-size: 0.75rem; color: rgba(255,255,255,0.3); text-decoration: none; transition: color 0.2s; }
+    footer a:hover { color: var(--blue-light); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .prose-layout { grid-template-columns: 1fr; gap: 3rem; }
+      .prose-sidebar { position: static; }
+      .peer-layout { grid-template-columns: 1fr; gap: 3rem; }
+      .peer-aside { position: static; }
+      .stat-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- CRISIS BAND -->
+  <div class="crisis-band">
+    <div class="crisis-band-inner">
+      <span class="crisis-band-label">Mental Health Emergency?</span>
+      <div class="crisis-band-resources">
+        <span class="crisis-resource"><strong>988 Lifeline</strong> — Call or text <strong>988</strong> — <a href="https://988lifeline.org" target="_blank">988lifeline.org</a> — 24/7</span>
+        <span class="crisis-resource"><strong>Crisis Text Line</strong> — Text HOME to <strong>741741</strong> — <a href="https://www.crisistextline.org" target="_blank">crisistextline.org</a> — 24/7</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-pattern"></div>
+    <div class="hero-content">
+      <p class="hero-eyebrow">Four Pillars Counseling &nbsp;/&nbsp; Attorneys</p>
+      <h1 class="hero-title">You spend your life solving other people's problems.<br/><em>Isn't it time to address your own?</em></h1>
+      <p class="hero-sub">Four Pillars offers you a confidential space to do exactly that — with a counselor who has been in the legal trenches.</p>
+    </div>
+  </div>
+
+  <!-- SECTION 1 — THE REALITY OF THE PROFESSION -->
+  <section class="section">
+    <div class="prose-layout">
+      <div class="prose-sidebar">
+        <p class="section-label">The Reality of the Profession</p>
+        <h2 class="section-title">The data is stark.</h2>
+      </div>
+      <div class="prose-body">
+        <div class="stat-grid">
+          <div class="stat-card">
+            <div class="stat-number">1 in 5</div>
+            <div class="stat-label">attorneys struggles with problematic alcohol use</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">1 in 4</div>
+            <div class="stat-label">experiences symptoms of depression</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">1 in 4</div>
+            <div class="stat-label">reports significant stress</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">1 in 10</div>
+            <div class="stat-label">has experienced thoughts of suicide</div>
+          </div>
+        </div>
+        <p class="source-note">Source: Krill, Johnson &amp; Albert, <em>Journal of Addiction Medicine</em>, 2016 — <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC4736291/" target="_blank">View Study</a></p>
+        <p>A separate peer-reviewed study published in 2023 found that attorneys are twice as likely as the general working population to experience suicidal ideation — and that attorneys with high perceived stress are 22 times more likely to contemplate suicide than those with low stress.</p>
+        <p class="source-note">Source: Krill, Thomas, Kramer, Degeneffe &amp; Anker, <em>Healthcare</em>, 2023 — <a href="https://www.mdpi.com/2227-9032/11/4/536" target="_blank">View Study</a></p>
+        <p>These are not personal failings. They are the predictable consequences of a profession that demands relentless performance, tolerates no visible weakness, and provides very little formal support for the people inside it.</p>
+        <p>You were trained to advocate and execute under pressure, to suppress what you feel, and to project confidence — regardless of your internal state. That training serves a purpose in the courtroom and in negotiations, but it can hurt you outside the law.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 2 — WHAT BRINGS ATTORNEYS HERE -->
+  <section class="section section-alt">
+    <div class="prose-layout">
+      <div class="prose-sidebar">
+        <p class="section-label">What Brings Attorneys Here</p>
+        <h2 class="section-title">Every reason for seeking help is valid.</h2>
+      </div>
+      <div class="prose-body">
+        <p>Attorneys come to counseling for many different reasons.</p>
+        <div class="brings-list">
+          <div class="brings-item">
+            <div class="brings-item-dot"></div>
+            <span>Some are managing burnout, depression, or anxiety.</span>
+          </div>
+          <div class="brings-item">
+            <div class="brings-item-dot"></div>
+            <span>Some are confronting questions about their substance use and their fitness to practice.</span>
+          </div>
+          <div class="brings-item">
+            <div class="brings-item-dot"></div>
+            <span>Some are dealing with the relationship strain the profession produces.</span>
+          </div>
+        </div>
+        <p class="brings-suicide">And some are here because they are considering suicide.</p>
+        <br/>
+        <p>Whatever brings you here, it is a valid reason to seek help.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 3 — WHY FOUR PILLARS -->
+  <section class="section">
+    <div class="peer-layout">
+      <div class="peer-content">
+        <p class="section-label">Why Four Pillars</p>
+        <h2 class="section-title" style="margin-bottom:1.5rem;">A peer — not a counselor with second-hand knowledge of your industry.</h2>
+        <p>Four Pillars offers something rare: an owner who practiced law, who understands the profession's demands, and who has lived its culture.</p>
+        <p>That experience matters. From the initial consultation call to the end of your journey at Four Pillars, you will work with a counselor who intimately understands the legal profession. You won't have to explain terms of art. You won't have to explain why certain experiences exact the emotional and physical toll they do. You are working with a peer — not a counselor with second-hand knowledge of your industry.</p>
+      </div>
+      <div class="peer-aside">
+        <p class="peer-aside-label">What this means for you</p>
+        <p class="peer-aside-quote">The work can begin from the first session — not after you've spent weeks providing context.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 4 — CONFIDENTIALITY -->
+  <div class="confidentiality-band">
+    <div class="confidentiality-inner">
+      <p class="section-label">A Note on Confidentiality</p>
+      <h2 class="section-title" style="margin-bottom:1.5rem;">Four Pillars does not report to state bar associations.</h2>
+      <p>What you discuss in counseling stays in counseling, with very narrow, limited, legally mandated exceptions (e.g., child or elder abuse or neglect).</p>
+      <p>If you have specific concerns about confidentiality and how it applies to your situation, that is an appropriate and welcome topic for your free consultation call.</p>
+    </div>
+  </div>
+
+  <!-- SECTION 5 — WHERE AND HOW WE MEET -->
+  <section class="section section-alt">
+    <p class="section-label">Where and How We Meet</p>
+    <h2 class="section-title">Flexible, private, and accessible</h2>
+    <div class="logistics-list">
+      <div class="logistics-item">
+        <svg class="logistics-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/>
+        </svg>
+        <div>
+          <strong>Texas</strong>
+          <p>Texas clients are seen exclusively via HIPAA-compliant video.</p>
+        </div>
+      </div>
+      <div class="logistics-item">
+        <svg class="logistics-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/>
+        </svg>
+        <div>
+          <strong>Arkansas — Statewide</strong>
+          <p>Arkansas clients throughout the state are seen via HIPAA-compliant video.</p>
+        </div>
+      </div>
+      <div class="logistics-item">
+        <svg class="logistics-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
+        </svg>
+        <div>
+          <strong>Bella Vista &amp; Bentonville Area</strong>
+          <p>Clients in the Bella Vista and Bentonville area have the additional option of meeting in person.</p>
+        </div>
+      </div>
+      <div class="logistics-item">
+        <svg class="logistics-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/>
+        </svg>
+        <div>
+          <strong>Session Structure</strong>
+          <p>Sessions are structured but always flexible enough to accommodate each client's unique situation and needs.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CRISIS RESOURCES SECTION -->
+  <div class="crisis-section">
+    <p class="crisis-section-label">Crisis Resources</p>
+    <h2 class="crisis-section-title">If you or a colleague are in crisis, these resources are confidential and available now.</h2>
+    <div class="crisis-resources-grid">
+
+      <div class="crisis-resource-card">
+        <div class="crisis-resource-name">988 Suicide &amp; Crisis Lifeline</div>
+        <div class="crisis-resource-detail">
+          Call or text <strong>988</strong><br/>
+          <a href="https://988lifeline.org" target="_blank">988lifeline.org</a>
+        </div>
+        <div class="crisis-resource-badge">Available 24/7</div>
+      </div>
+
+      <div class="crisis-resource-card">
+        <div class="crisis-resource-name">Crisis Text Line</div>
+        <div class="crisis-resource-detail">
+          Text HOME to <strong>741741</strong><br/>
+          <a href="https://www.crisistextline.org" target="_blank">crisistextline.org</a>
+        </div>
+        <div class="crisis-resource-badge">Available 24/7</div>
+      </div>
+
+      <div class="crisis-resource-card">
+        <div class="crisis-resource-name">Texas Lawyers' Assistance Program</div>
+        <div class="crisis-resource-detail">
+          <strong>800-343-8527</strong><br/>
+          <a href="https://www.tlaphelps.org" target="_blank">tlaphelps.org</a><br/>
+          Confidential by statute
+        </div>
+        <div class="crisis-resource-badge">Available 24/7</div>
+      </div>
+
+      <div class="crisis-resource-card">
+        <div class="crisis-resource-name">Arkansas Judges &amp; Lawyers Assistance Program</div>
+        <div class="crisis-resource-detail">
+          <strong>501-907-2529</strong><br/>
+          <a href="https://www.arjlap.org" target="_blank">arjlap.org</a><br/>
+          Confidential by rule
+        </div>
+        <div class="crisis-resource-badge">Confidential</div>
+      </div>
+
+      <div class="crisis-resource-card">
+        <div class="crisis-resource-name">ABA Lawyer Assistance Programs</div>
+        <div class="crisis-resource-detail">
+          Find your state LAP<br/>
+          <a href="https://www.americanbar.org/groups/lawyer_assistance/resources/lap_programs_by_state/" target="_blank">americanbar.org — State LAP Directory</a>
+        </div>
+        <div class="crisis-resource-badge">All 50 States</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ABOUT ME BRIDGE -->
+  <section style="background: var(--cream); padding: 2.5rem 8vw; text-align: center; border-top: 1px solid var(--sand);">
+    <p style="font-family: 'Jost', sans-serif; font-size: 0.88rem; font-weight: 300; color: var(--text-mid); line-height: 1.8;">
+      Want to know more about who you'll be working with?
+      <a href="about.html" style="color: var(--navy); font-weight: 400; text-decoration: underline; text-underline-offset: 3px;">Meet the counselor.</a>
+    </p>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section" id="schedule">
+    <div class="cta-content">
+      <p class="section-label" style="color: var(--blue-light); text-align:center;">Schedule Your Consultation</p>
+      <h2 class="cta-headline">You wouldn't hesitate to engage outside counsel when the situation demands it. Don't hesitate now.</h2>
+      <p class="cta-confidential">No one will know but you.</p>
+      <p class="cta-directive">Schedule your free 15-minute consultation below.</p>
+      <iframe src="https://app.acuityscheduling.com/schedule.php?owner=38695518&ref=embedded_csp" title="Schedule Appointment" width="100%" height="800" frameBorder="0" allow="payment"></iframe>
+      <script src="https://embed.acuityscheduling.com/js/embed.js" type="text/javascript"></script>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2025 Four Pillars Counseling PLLC. All rights reserved.</p>
+    <div class="footer-links">
+      <a href="texas-hb4224.html">Texas HB 4224 Compliance</a>
+      <a href="privacy-and-cookies-policy.html">Privacy Policy</a>
+    </div>
+  </footer>
+
+</body>
+</html>
