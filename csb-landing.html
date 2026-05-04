@@ -101,7 +101,25 @@
       background-color: var(--navy-dark);
       padding: 9rem 24px 90px;
       text-align: center;
+      position: relative;
+      overflow: hidden;
     }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse at 85% 30%, rgba(107,132,196,0.15) 0%, transparent 55%),
+        radial-gradient(ellipse at 15% 70%, rgba(45,62,122,0.25) 0%, transparent 50%);
+    }
+    .hero-pattern {
+      position: absolute; inset: 0;
+      opacity: 0.04;
+      background-image: repeating-linear-gradient(
+        45deg, #fff 0, #fff 1px, transparent 0, transparent 50%
+      );
+      background-size: 24px 24px;
+    }
+    .hero > *:not(.hero-pattern) { position: relative; z-index: 2; }
 
     .hero__eyebrow {
       font-family: 'Jost', sans-serif;
@@ -520,7 +538,7 @@
 
   <!-- Hero -->
   <section class="hero">
-    <p class="hero-breadcrumb" style="font-family:'Jost',sans-serif;font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--blue-light);margin-bottom:1rem;"><a href="index.html" style="color:var(--blue-light);text-decoration:none;">Home</a> &nbsp;/&nbsp; Sexual Behavior</p>
+    <div class="hero-pattern"></div> style="font-family:'Jost',sans-serif;font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--blue-light);margin-bottom:1rem;"><a href="index.html" style="color:var(--blue-light);text-decoration:none;">Home</a> &nbsp;/&nbsp; Sexual Behavior</p>
     <p class="hero__eyebrow">Counseling for Compulsive Sexual Behaviors</p>
     <h1 class="hero__headline">Something Has<br>to <em>Change.</em></h1>
     <p class="hero__sub">If your sexual behaviors feel out of control and you think you're ready for change, counseling can help. This is a non-judgmental space for you to be radically honest — with your therapist and with yourself.</p>
