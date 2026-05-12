@@ -126,8 +126,26 @@
     }
     @media (max-width: 900px) {
       .hamburger { display: flex; flex-direction: column; }
-      .nav-links { display: none; flex-direction: column; position: absolute; top: 100%; left: 0; right: 0; background: rgba(246,244,239,0.97); padding: 1rem 5vw 1.5rem; border-bottom: 1px solid var(--sand); }
-      nav.nav-open .nav-links { display: flex; }
+      .nav-links { display: none; }
+      nav.nav-open .nav-links {
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        top: 64px;
+        left: 0;
+        right: 0;
+        background: var(--parchment, #f5f0e8);
+        padding: 1.75rem 2rem;
+        gap: 1.25rem;
+        border-bottom: 1px solid var(--sand, #d4c9b0);
+        z-index: 150;
+        box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+        align-items: center;
+        text-align: center;
+      }
+      nav.nav-open .nav-links li { text-align: center; }
+      nav.nav-open .nav-links a { font-size: 0.9rem; text-align: center; }
+      nav.nav-open .nav-cta { display: inline-block; text-align: center; }
       .hero-inner { flex-direction: column; }
       .hero-image { width: 100%; justify-content: center; }
       .hero-image img { max-width: 100%; height: 280px; }
